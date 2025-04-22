@@ -53,7 +53,7 @@ export default function Home() {
               <Github className="h-6 w-6 text-white" />
             </a>
             <a
-              href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile"
+              href="https://www.linkedin.com/in/suraj-rathor-1116472b0/"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white/10 p-3 rounded-full hover:bg-white/20 transition-colors"

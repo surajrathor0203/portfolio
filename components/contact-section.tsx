@@ -40,7 +40,7 @@ export default function ContactSection() {
     {
       icon: <Linkedin className="h-5 w-5" />,
       text: "SURAJ RATHOR",
-      link: "https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile",
+      link: "https://www.linkedin.com/in/suraj-rathor-1116472b0/",
     },
     {
       icon: <Github className="h-5 w-5" />,
