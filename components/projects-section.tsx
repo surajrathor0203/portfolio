@@ -27,7 +27,7 @@ export default function ProjectsSection() {
       image: "/images/government-project.jpeg",
     },
     {
-      title: "Coaching Management System (CMS)",
+      title: "TheShikshaPath (Coaching Management System) ",
       year: "2025",
       description:
         "Developed and managed the Coaching Management System (CMS) to streamline coaching operations, track progress, and enhance user engagement. Implemented key features for scheduling, performance monitoring, and data analytics.",
