@@ -1,29 +1,23 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
-
-const inter = Inter({ subsets: ["latin"] })
+import type { Metadata } from 'next'
+import './globals.css'
 
 export const metadata: Metadata = {
-  title: "Suraj Rathor - Portfolio",
-  description: "Computer Science Engineer & Web Developer",
-    generator: 'v0.dev'
+title: 'Suraj Rathor - Full Stack Developer & iOS Developer',
+description: 'Portfolio of Suraj Rathor - Full Stack Developer specializing in React, Node.js, MongoDB, and iOS development. Currently pursuing B.Tech at IIIT Kottayam.',
+generator: 'v0.dev',
+icons: {
+  icon: '/images/profile.jpeg',
+},
 }
 
 export default function RootLayout({
-  children,
+children,
 }: Readonly<{
-  children: React.ReactNode
+children: React.ReactNode
 }>) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
-  )
+return (
+  <html lang="en">
+    <body>{children}</body>
+  </html>
+)
 }
