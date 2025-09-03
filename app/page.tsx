@@ -402,14 +402,14 @@ export default function Portfolio() {
                     className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-{/*                     transition={{ duration: 0.6, delay: 0.2 }} */}
+                    transition={{ duration: 0.6, delay: 0.2 }}
                     viewport={{ once: true }}
                   >
                     {[
                       { label: "Name", value: "Suraj Rathor" },
                       { label: "Email", value: "rathor.suraj0203@gmail.com" },
                       { label: "Location", value: "Kottayam, Kerala, India" },
-                      { label: "CGPA", value: "6.87/10", highlight: true },
+                      // { label: "CGPA", value: "6.87/10", highlight: true },
                     ].map((item, index) => (
                       <motion.div
                         key={item.label}
