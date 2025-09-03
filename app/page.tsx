@@ -34,8 +34,8 @@ const scrollToContact = () => {
 
 const downloadResume = () => {
   const link = document.createElement("a")
-  link.href = "/resume/Suraj_Rathor_Resume.pdf"
-  link.download = "Suraj_Rathor_Resume.pdf"
+  link.href = "/resume/suraj_resume.pdf" // <-- use public path
+  link.download = "suraj_resume.pdf"
   document.body.appendChild(link)
   link.click()
   document.body.removeChild(link)
