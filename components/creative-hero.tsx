@@ -61,8 +61,8 @@ export function CreativeHero() {
         this.density = Math.random() * 30 + 1
         this.distance = 0
 
-        // Create a gradient from purple to pink
-        const hue = Math.random() * 60 + 270 // 270-330 range for purples and pinks
+        // Create a gradient from cyan to blue
+        const hue = Math.random() * 60 + 180 // 180-240 range for cyans and blues
         this.color = `hsl(${hue}, 70%, 60%)`
       }
 
@@ -107,7 +107,6 @@ export function CreativeHero() {
 
     // Create particle grid
     const particlesArray: Particle[] = []
-    const particleCount = 1000
     const gridSize = 30
 
     function init() {
@@ -151,7 +150,7 @@ export function CreativeHero() {
 
           if (distance < 30) {
             ctx.beginPath()
-            ctx.strokeStyle = `rgba(180, 120, 255, ${0.2 - distance / 150})`
+            ctx.strokeStyle = `rgba(34, 211, 238, ${0.2 - distance / 150})`
             ctx.lineWidth = 0.5
             ctx.moveTo(particlesArray[i].x, particlesArray[i].y)
             ctx.lineTo(particlesArray[j].x, particlesArray[j].y)

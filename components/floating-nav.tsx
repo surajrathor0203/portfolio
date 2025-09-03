@@ -3,19 +3,19 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Download } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { useMobile } from "@/hooks/use-mobile"
 
 const downloadResume = () => {
-  const link = document.createElement('a');
-  link.href = '/resume/Suraj_Rathor_Resume.pdf';
-  link.download = 'Suraj_Rathor_Resume.pdf';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-};
+  const link = document.createElement("a")
+  link.href = "/resume/Suraj_Rathor_Resume.pdf"
+  link.download = "Suraj_Rathor_Resume.pdf"
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+}
 
 export function FloatingNav() {
   const [isVisible, setIsVisible] = useState(false)
@@ -40,7 +40,7 @@ export function FloatingNav() {
     { name: "Skills", href: "#skills" },
     { name: "Projects", href: "#projects" },
     { name: "Experience", href: "#experience" },
-    { name: "Achievements", href: "#achievements" }, // Added this line
+    { name: "Achievements", href: "#achievements" },
     { name: "Contact", href: "#contact" },
   ]
 
@@ -58,19 +58,19 @@ export function FloatingNav() {
         animate={{ y: isVisible ? 0 : -100 }}
         transition={{ duration: 0.3 }}
       >
-        <div className="relative px-3 sm:px-4 py-2 sm:py-3 rounded-full bg-zinc-800/80 backdrop-blur-md border border-zinc-700/50 shadow-lg">
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full blur opacity-50"></div>
+        <div className="relative px-3 sm:px-4 py-2 sm:py-3 rounded-full bg-slate-800/80 backdrop-blur-md border border-slate-700/50 shadow-lg">
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full blur opacity-50"></div>
 
           {isMobile ? (
             <div className="relative flex items-center justify-between min-w-[200px]">
               <Link href="/" className="font-bold text-base sm:text-lg">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">Suraj</span>
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-400">Suraj</span>
                 <span className="text-white">R</span>
               </Link>
               <Button
                 variant="ghost"
                 size="icon"
-                className="text-zinc-400 hover:text-white hover:bg-zinc-700/50 h-8 w-8"
+                className="text-slate-400 hover:text-white hover:bg-slate-700/50 h-8 w-8"
                 onClick={() => setIsOpen(!isOpen)}
               >
                 {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
@@ -79,14 +79,14 @@ export function FloatingNav() {
           ) : (
             <div className="relative flex items-center gap-1">
               <Link href="/" className="font-bold text-lg mr-4">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">Suraj</span>
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-400">Suraj</span>
                 <span className="text-white">R</span>
               </Link>
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="px-3 py-1 text-sm font-medium text-zinc-400 hover:text-white transition-colors"
+                  className="px-3 py-1 text-sm font-medium text-slate-400 hover:text-white transition-colors"
                   onClick={handleNavClick}
                 >
                   {item.name}
@@ -94,9 +94,10 @@ export function FloatingNav() {
               ))}
               <Button
                 size="sm"
-                className="ml-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-purple-500 border-0"
+                className="ml-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-blue-500 hover:to-indigo-500 border-0"
                 onClick={downloadResume}
               >
+                <Download className="w-4 h-4 mr-1" />
                 Resume
               </Button>
             </div>
@@ -117,19 +118,20 @@ export function FloatingNav() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="px-8 py-4 text-xl sm:text-2xl font-medium text-white hover:text-purple-400 transition-colors text-center"
+                className="px-8 py-4 text-xl sm:text-2xl font-medium text-white hover:text-cyan-400 transition-colors text-center"
                 onClick={handleNavClick}
               >
                 {item.name}
               </Link>
             ))}
-            <Button 
-              className="mt-6 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-purple-500 border-0"
+            <Button
+              className="mt-6 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-blue-500 hover:to-indigo-500 border-0"
               onClick={() => {
-                downloadResume();
-                setIsOpen(false);
+                downloadResume()
+                setIsOpen(false)
               }}
             >
+              <Download className="w-4 h-4 mr-2" />
               Resume
             </Button>
           </div>

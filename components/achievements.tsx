@@ -1,26 +1,29 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Brain, Cloud, Trophy } from 'lucide-react'
+import { Brain, Cloud, Trophy } from "lucide-react"
 import { GlassmorphicCard } from "@/components/glassmorphic-card"
 
 const achievements = [
   {
     title: "Level 3 GenAI: Prompt Engineering in THE ARCADE",
-    year: "2023",
-    description: "Advanced skills in designing and optimizing AI prompts for diverse applications.",
+    year: "March 2023",
+    description:
+      "Advanced skills in designing and optimizing AI prompts for diverse applications, demonstrating expertise in AI integration and prompt engineering techniques.",
     icon: Brain,
   },
   {
     title: "Google Cloud Computing Foundations",
-    year: "2023",
-    description: "Achieved Silver League (15,635 points) and earned 8 badges in Google Cloud technologies.",
+    year: "March 2023",
+    description:
+      "Achieved Silver League (15,635 points) and earned 8 badges in Google Cloud technologies, showcasing proficiency in cloud computing and deployment.",
     icon: Cloud,
   },
   {
     title: "Smart India Hackathon (SIH) Intra-college Winner",
     year: "October 2023",
-    description: "Won first place in the intra-college Smart India Hackathon with innovative solutions.",
+    description:
+      "Won first place in the intra-college Smart India Hackathon with innovative solutions, demonstrating problem-solving skills and technical excellence.",
     icon: Trophy,
   },
 ]
@@ -40,15 +43,15 @@ export function Achievements() {
           >
             <GlassmorphicCard>
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 flex items-center justify-center flex-shrink-0">
-                  <IconComponent className="h-6 w-6 text-purple-400" />
+                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-cyan-500/20 to-blue-500/20 flex items-center justify-center flex-shrink-0">
+                  <IconComponent className="h-6 w-6 text-cyan-400" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold">{achievement.title}</h3>
-                  <div className="text-zinc-400 text-sm">{achievement.year}</div>
+                  <h3 className="text-xl font-bold text-white">{achievement.title}</h3>
+                  <div className="text-slate-400 text-sm">{achievement.year}</div>
                 </div>
               </div>
-              <p className="text-zinc-300">{achievement.description}</p>
+              <p className="text-slate-300 leading-relaxed">{achievement.description}</p>
             </GlassmorphicCard>
           </motion.div>
         )
