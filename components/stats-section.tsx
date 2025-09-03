@@ -6,7 +6,7 @@ import { Code2, Users, Award, Coffee } from "lucide-react"
 const stats = [
   {
     icon: Code2,
-    value: "20+",
+    value: "6+",
     label: "Projects Completed",
     description: "Full-stack applications and mobile solutions",
   },
