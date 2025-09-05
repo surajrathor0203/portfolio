@@ -1,12 +1,21 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion, useScroll, useSpring } from "framer-motion"
+import { motion, useScroll, useSpring, useTransform } from "framer-motion"
 
 export function ScrollProgress() {
   const [isVisible, setIsVisible] = useState(false)
   const { scrollYProgress } = useScroll()
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 })
+
+  // Use spring animation for smoother progress
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  })
+
+  // Add gradient animation
+  const gradientOffset = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,15 +26,24 @@ export function ScrollProgress() {
       }
     }
 
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   return (
     <motion.div
-      className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 origin-left z-50"
-      style={{ scaleX, opacity: isVisible ? 1 : 0 }}
-      transition={{ opacity: { duration: 0.3 } }}
+      className="fixed top-0 left-0 right-0 h-1 origin-left z-50"
+      style={{
+        scaleX,
+        background: `linear-gradient(90deg, #06b6d4 0%, #3b82f6 50%, #6366f1 100%)`,
+        backgroundSize: "200% 100%",
+        backgroundPosition: `${gradientOffset} 0%`,
+      }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: isVisible ? 1 : 0 }}
+      transition={{
+        opacity: { duration: 0.3, ease: [0.4, 0, 0.2, 1] },
+      }}
     />
   )
 }

@@ -1,112 +1,128 @@
 "use client"
 
-import { motion } from "framer-motion"
-import {
-  Code2,
-  Database,
-  Smartphone,
-  Globe,
-  Server,
-  GitBranch,
-  Layers,
-  Palette,
-  Cloud,
-  Terminal,
-  FileCode,
-  Cpu,
-  Zap,
-  Box,
-  Monitor,
-  Workflow,
-  Shield,
-  Search,
-  Brain,
-  Cog,
-  Network,
-} from "lucide-react"
+import { motion, useInView } from "framer-motion"
+import { Badge } from "@/components/ui/badge"
+import { useRef } from "react"
 
 interface SkillBadgeProps {
   name: string
   level: number
 }
 
-const getSkillIcon = (skillName: string) => {
-  const iconMap: { [key: string]: any } = {
-    "C/C++": Terminal,
-    JavaScript: FileCode,
-    Java: Cpu,
-    Python: Code2,
-    Swift: Smartphone,
-    "React.js": Layers,
-    "Node.js": Server,
-    MongoDB: Database,
-    "iOS Development": Smartphone,
-    WordPress: Globe,
-    Git: GitBranch,
-    "Express.js": Server,
-    TypeScript: FileCode,
-    "Next.js": Zap,
-    "Tailwind CSS": Palette,
-    Firebase: Cloud,
-    MySQL: Database,
-    PostgreSQL: Database,
-    Docker: Box,
-    AWS: Cloud,
-    GraphQL: Search,
-    Linux: Terminal,
-    Figma: Palette,
-    Nhost: Cloud,
-    Hasura: Database,
-    n8n: Workflow,
-    OpenRouter: Network,
-    "AI Integration": Brain,
-    "Cloud Deployment": Cloud,
-    "API Design": Cog,
-    "Real-time": Zap,
-    Mobile: Smartphone,
-    Analytics: Monitor,
-    Government: Shield,
-  }
-
-  return iconMap[skillName] || Code2
-}
-
 export function SkillBadge({ name, level }: SkillBadgeProps) {
-  const IconComponent = getSkillIcon(name)
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-50px" })
+
+  const getSkillColor = (level: number) => {
+    if (level >= 90) return "from-green-500 to-emerald-500"
+    if (level >= 80) return "from-blue-500 to-cyan-500"
+    if (level >= 70) return "from-yellow-500 to-orange-500"
+    return "from-red-500 to-pink-500"
+  }
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.3 }}
-      viewport={{ once: true }}
-      whileHover={{ y: -5 }}
+      ref={ref}
+      initial={{ opacity: 0, scale: 0.8, y: 20 }}
+      animate={
+        isInView
+          ? {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+            }
+          : {
+              opacity: 0,
+              scale: 0.8,
+              y: 20,
+            }
+      }
+      transition={{
+        duration: 0.5,
+        ease: [0.4, 0, 0.2, 1],
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+      }}
+      whileHover={{
+        scale: 1.05,
+        y: -5,
+        transition: { duration: 0.2 },
+      }}
+      whileTap={{
+        scale: 0.95,
+        transition: { duration: 0.1 },
+      }}
+      className="group cursor-pointer"
     >
-      <div className="relative overflow-hidden rounded-xl bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 h-full transition-all duration-300 hover:border-cyan-400/50 group">
-        <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-xl blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+      <motion.div
+        className="relative p-4 rounded-xl bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 hover:border-cyan-400/50 transition-all duration-300"
+        whileHover={{
+          boxShadow: "0 10px 25px -5px rgba(6, 182, 212, 0.2)",
+          transition: { duration: 0.3 },
+        }}
+      >
+        <motion.div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
         <div className="relative">
-          <div className="flex items-center justify-center mb-4">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-r from-cyan-500/20 to-blue-500/20 flex items-center justify-center">
-              <IconComponent className="h-6 w-6 text-cyan-400" />
-            </div>
+          <div className="flex items-center justify-between mb-2">
+            <motion.h3
+              className="font-semibold text-white text-sm"
+              animate={{
+                color: isInView ? "#ffffff" : "#64748b",
+              }}
+              transition={{ duration: 0.3 }}
+            >
+              {name}
+            </motion.h3>
+            <motion.span
+              className="text-xs text-cyan-400 font-medium"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isInView ? 1 : 0 }}
+              transition={{ delay: 0.2, duration: 0.3 }}
+            >
+              {level}%
+            </motion.span>
           </div>
 
-          <div className="text-center mb-4 font-medium text-lg text-white">{name}</div>
-
-          <div className="relative h-2.5 w-full bg-slate-700 rounded-full overflow-hidden">
+          <div className="w-full bg-slate-700/50 rounded-full h-2 overflow-hidden">
             <motion.div
-              className="absolute top-0 left-0 h-full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full"
+              className={`h-full bg-gradient-to-r ${getSkillColor(level)} rounded-full relative`}
               initial={{ width: 0 }}
-              whileInView={{ width: `${level}%` }}
-              transition={{ duration: 1, delay: 0.2 }}
-              viewport={{ once: true }}
-            />
+              animate={{ width: isInView ? `${level}%` : 0 }}
+              transition={{
+                duration: 1,
+                delay: 0.3,
+                ease: [0.4, 0, 0.2, 1],
+              }}
+            >
+              <motion.div
+                className="absolute inset-0 bg-white/20 rounded-full"
+                animate={{ x: ["-100%", "100%"] }}
+                transition={{
+                  duration: 2,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "linear",
+                  delay: 1.3,
+                }}
+              />
+            </motion.div>
           </div>
 
-          <div className="mt-2 text-right text-sm text-slate-400">{level}%</div>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+            transition={{ delay: 0.5, duration: 0.3 }}
+          >
+            <Badge
+              variant="secondary"
+              className="mt-2 bg-slate-700/30 text-slate-300 text-xs border-slate-600/50 transition-all duration-300 group-hover:bg-slate-600/50"
+            >
+              {level >= 90 ? "Expert" : level >= 80 ? "Advanced" : level >= 70 ? "Intermediate" : "Beginner"}
+            </Badge>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   )
 }
